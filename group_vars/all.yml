@@ -83,6 +83,7 @@ name_of_bios_policy        : "{{ prefix }}-{{ server_cpu_type }}-M6-BIOS"
 # IMC Access Policy - Configures the KVM to be accessed In-Band
 # The in-band vlan must be enabled on the trunk between Nexus 9K and UCS FI
 name_of_imc_access_policy           : "{{ prefix }}-IMC-Access-Policy"
+vlan_for_cimc_access                : 1080
 
 # KVM Access Policy - Enables (true) or disables (false) Tunneled KVM Server Access
 # Ensure the Intersight Account allows Tunneled KVM> To enable Tunneled KVM for
