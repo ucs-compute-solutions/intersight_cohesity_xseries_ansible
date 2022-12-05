@@ -1,0 +1,33 @@
+---
+- name: "Boot Order Policy for Cohesity"
+  vars:
+    api_info: &api_info_bootorder
+      api_private_key: "{{ api_private_key }}"
+      api_key_id: "{{ api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+  block:
+  -    cisco.intersight.intersight_boot_order_policy:
+                api_private_key: "{{ api_private_key }}"
+                api_key_id: "{{ api_key_id }}"
+                organization: "{{ org_name }}"
+                name: "{{ boot_order_policy_name }}"
+                description: "{{ boot_order_policy_description }}"
+                configured_boot_mode: Uefi
+
+                boot_devices:
+                    - device_type: Local Disk
+                      device_name: m2-1
+                      controller_slot: MSTOR-RAID
+
+                    - device_type: Local Disk
+                      device_name: m2-2
+                      controller_slot: MSTOR-RAID
+
+                    - device_type:  Virtual Media 
+                      device_name: vmedia1
+       register: boot_order_policy
+
+
+

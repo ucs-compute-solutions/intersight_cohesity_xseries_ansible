@@ -1,0 +1,169 @@
+# This file defines the variables which are common across the entire setup.
+
+
+# Enter Intersight API Key ID and the location of the SecretKey file
+api_key_id        : 5d1cf7a87564612d30f05a40/5d1cf7127564612d30f04de5/6385077b7564612d317e2561
+api_private_key   : ~/Downloads/ansible/SecretKey.txt
+
+
+
+# Intersight Organization Name. Please make sure it already exists.
+org_name      : "test_org"
+
+
+
+# Prefix added to the pool/policy/profile configuration to eaisly identify items created by Ansible
+prefix        : coh1
+
+
+###############################################################################
+#
+# Server Configuration
+#
+##############################################################################
+
+# Server CPU Type - set to Intel or AMD
+server_cpu_type: "Intel"
+
+# VIC Type - set to 4G for 4th Gen VICs or 5G for 5th Gen VICs - Also add 4G (VIC 14xx) or 5G (VIC 15xx) to Server Profile Template Name
+vic_type: "4G"
+
+# UCS VIC Slot ID - Slot ID of the device. Supported values are ( 1 - 255, "MLOM", "L1", "L2" ) - Also add an indicator of this to FC and iSCSI LAN Connectivity Policy Names
+vic_slot_id: "MLOM"
+
+
+
+
+###############################################################################
+#
+# Various Pools
+#
+###############################################################################
+
+# Chassis Configuration - UUID Pool, Pls edit the UUID prefix as per the setup
+name_of_uuid_pool: '{{ prefix }}-UUID-Pool'
+uuid_prefix: 'AA080000-0000-0001'
+uuid_size: 50
+uuid_from: 'AA08-000000000001'
+
+
+
+# IP Address Pool for Management Access (in-band access)
+#
+name_of_ip_pool_for_management_access       : "{{ prefix }}-OOB-MGMT-IP-Pool"
+ip_pool_start_for_management_access         : 10.108.0.110
+size_of_ip_pool_for_management_access       : 8
+gateway_mgmt                                : 10.108.0.254
+netmask_mgmt                                : 255.255.255.0
+primary_dns_mgmt                            : 10.103.1.151
+secondary_dns_mgmt                          : 10.103.1.152
+
+
+# Separate MAC Address Pools for Fabric-A and Fabric-B
+#For FI-A
+name_of_mac_pool_on_fi_a          : "{{ prefix }}-Mac-Pool-A"
+mac_pool_start_on_fi_a            : "00:B4:AA:03:0A:00"
+size_of_mac_pool_on_fi_a          : 256
+
+# For FI-B
+name_of_mac_pool_on_fi_b          : "{{ prefix}}-Mac-Pool-B"
+mac_pool_start_on_fi_b            : "00:B4:AA:03:0B:00"
+size_of_mac_pool_on_fi_b          : 256
+
+
+
+###############################################################################
+#
+# Server Policies
+#
+###############################################################################
+# BIOS policies
+name_of_bios_policy        : "{{ prefix }}-{{ server_cpu_type }}-M6-BIOS"
+#
+# IMC Access Policy - Configures the KVM to be accessed In-Band
+# The in-band vlan must be enabled on the trunk between Nexus 9K and UCS FI
+name_of_imc_access_policy           : "{{ prefix }}-IMC-Access-Policy"
+vlan_for_cimc_access                : 1080
+
+# KVM Access Policy - Enables (true) or disables (false) Tunneled KVM Server Access
+# Ensure the Intersight Account allows Tunneled KVM> To enable Tunneled KVM for
+# account,  go to Settings > Security and Privacy and enable Tunneled KVM settings
+name_of_kvm_policy                  : "{{ prefix }}-KVM-Policy"
+enable_tunneled_kvm                 : 'true'
+
+# Virtual Media Policy - enables mounting ISO files using KVM
+name_of_vmedia_policy                 : "{{ prefix }}-KVM-Mount-vMedia"
+
+# Power Policy - Power Save Mode is Disabled by default
+name_of_power_policy                 : "{{ prefix }}-power-policy"
+
+
+# IPMI over LAN Policy
+name_of_ipmi_policy                 : "{{ prefix }}-Enable-IPMIoLAN-Policy"
+
+# Local User Policy to enable KVM and IPMI Access
+name_of_LocalUser_policy            : "{{ prefix }}-LocalUser-Policy"
+name_of_local_user                  : "admin"
+password_for_local_user             : "H1ghV0ltH1ghV0lt"
+
+# Ethernet QoS Policy to set MTU 9000 and QoS Best Effort;
+# QoS values can be updated in roles/create_server_policies/defaults/main.yml
+name_of_ethernet_qos_policy         : "{{ prefix }}-EthernetQoS-Policy"
+
+# Ethernet Network Control Policy to enable CDP and LLDP
+name_of_ethernet_network_control_policy         : "{{ prefix }}-Enable-CDP-LLDP-Policy"
+
+
+
+# Ethernet VIC Adapter Policy (4g/5g)
+# Various values can be updated under roles/create_server_policies/defaults/main.yml
+name_of_ethernet_adapter_policy  : "{{ prefix }}-EthAdapter-{{ vic_type }}"
+
+# Ethernet Network Group Policy - VLAN details of vNICs assigned to vNIC A and VNICB
+
+name_of_network_group_policy_for_management         : "{{ prefix }}-net-grp-Policy"
+native_vlan_for_mgmt_vnic                           : 1081
+allowed_vlans_for_mgmt_vnic                         : "1080,1081,1082"
+
+#------------------------- BOOT Order Policy ------------------------------
+# Boot Order Policy
+boot_order_policy_name         : "{{ prefix }}-Boot-Order-Policy"
+
+
+#------------------------- Serial Over LAN Policy ------------------------------
+name_of_sol_policy           : "{{ prefix }}-SOL-Policy"
+
+
+
+
+# LAN Connectivity Policy
+# 2 interfaces for all hosts. each pinned to FIA and FIB
+
+# - Note -
+# In the current version of Ansible Playbooks, we require unique vNIC names when
+# configuring both vNICA and vNICB in LAN connectivity policies
+
+#vNIC-A: For Management mapped to FI-A
+#vNIC-B: For Management mapped to FI-B
+
+
+
+name_of_lan_connectivity_policy      : "{{ prefix }}-{{ vic_type }}-{{ vic_slot_id }}-LANCon"
+
+
+
+name_of_vnic_1                       : "vNIC-A"
+name_of_vnic_2                       : "vNIC-B"
+
+
+
+
+
+# Boot mode for server. Either put Uefi or Legacy
+# UEFI secure boot true or false
+boot_mode                   : "Uefi"
+enable_uefi_secureboot      : 'false'
+
+#------------------------- Server Profile Template Name  ----------------------------------
+
+name_of_SPT       : "{{ prefix }}-{{ server_cpu_type }}-{{ vic_type }}-Cohesity-Template"

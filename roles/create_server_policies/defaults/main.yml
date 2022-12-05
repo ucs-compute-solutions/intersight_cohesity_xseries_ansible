@@ -1,0 +1,83 @@
+# This file defines various default values used by server policies
+# These values typically do not need to changes but can be modified depending on customer deployments
+
+# BIOS policies
+description_of_bios_policy : "BIOS Policy for Performance Optimized {{ server_cpu_type }}-based M6  Servers"
+
+# IMC Access Policy
+description_of_imc_access_policy    : "IMC Access Policy for KVM Access"
+
+# KVM Policy
+description_of_kvm_policy           : "KVM Policy to set Tunneled KVM to {{enable_tunneled_kvm}}"
+
+# vMedia Policy
+description_of_vmedia_policy        : "vMedia Policy to enable KVM mounted DVDs"
+
+# Boot Order Policy (if required)
+boot_order_policy_description    : "Boot Order Policy - M.2 MSTOR-RAID"
+
+
+
+# IPMI over LAN Policy
+description_of_ipmi_policy          : "Enable IPMI over LAN"
+
+# Local User Policy to enable KVM Access
+description_of_LocalUser_policy      : "Allow Local Users in this policy KVM Access to Servers"
+
+# Serial Over Lan Policy
+description_of_sol_policy      : "Serial Over LAN Policy Description"
+BaudRate                       : 9600
+ComPort                        : "com0"
+
+# Power Policy details
+#Power Profling - Disabled/Enabled
+# Power Save Mode - Disabled/Enabled
+description_of_power_policy    : "power Policy Description"
+power_profiling                :  "Disabled"
+power_restore_state            :  "LastState"
+power_priority                 :  "High"
+redundancy_mode                :  "Grid"
+power_save_mode                :  "Disabled"
+dynamic_rebalancing            :  "Enabled"
+extended_power_capacity        :  "Enabled"
+allocated_budget               :  0
+
+
+# Ethernet QoS Policy
+description_of_ethernet_qos_policy   : "Ethernet QoS Policy setting MTU to 9000 and priority to Best Effort"
+mtu                                  : 9000
+class_of_service                     : 0
+burst                                : 10240
+priority                             : "Best Effort"
+rate_limit                           : 0
+
+# Ethernet Network Control Policy
+description_of_ethernet_network_control_policy  : "Ethernet Network Control Policy to enable CDP and LLDP"
+
+
+
+# Ethernet Adapter Policy  - 4th Gen VIC (Applies to Cohesity)
+description_of_ethernet_adapter_4g_policy  : "Ethernet Adapter Policy  - 4th Gen VIC"
+vm4g_number_of_interrupts    : 10
+vm4g_receive_queue_count     : 8
+vm4g_receive_ring_size       : 4096
+vm4g_transmit_queue_count    : 4
+vm4g_transmit_ring_size      : 4096
+vm4g_completion_queue_count  : 12
+vm4g_completion_ring_size    : 1
+
+# Ethernet Adapter Policy for VMware 16 Rx Queues - 5th Gen VIC (Applies to iSCSI Boot/NVMe-TCP Interface)
+description_of_ethernet_adapter_5g_policy  : "Ethernet Adapter Policy  - 5th Gen VIC"
+vm5g_number_of_interrupts    : 19
+vm5g_receive_queue_count     : 16
+vm5g_receive_ring_size       : 16384
+vm5g_transmit_queue_count    : 1
+vm5g_transmit_ring_size      : 16384
+vm5g_completion_queue_count  : 17
+vm5g_completion_ring_size    : 1
+
+# Ethernet Network Group Policy - VLAN details of vNICs assigned to virtual switches for Management and NFS VLANs
+description_of_network_group_policy_for_management  : "VLAN details of Cohesity Management Traffic"
+
+# LAN Connectivity Policies
+description_of_lan_connectivity_policy    : "LAN Connectivity Policy  - {{ vic_type }} VIC-slot-{{ vic_slot_id }}"

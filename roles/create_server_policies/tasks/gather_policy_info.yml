@@ -1,0 +1,41 @@
+---
+# Gather various policy details to evaluate for existence of Boot Order policy, LAN
+# Connectivty Policy
+#
+# Get  Boot Order Policy for Service Profile Template
+- name: "Get  Boot Order Policy Details"
+  vars:
+    api_info: &api_info_boot_policy
+      api_private_key: "{{ api_private_key }}"
+      api_key_id: "{{ api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  intersight_rest_api:
+    <<: *api_info_boot_policy
+    resource_path: /boot/PrecisionPolicies
+    query_params:
+      $filter: "Name eq '{{ boot_order_policy_name }}'"
+
+  register:  boot_order_policy_details
+
+
+
+
+# Get LAN Connectivity Policy for Service Profile Template
+- name: "Get LAN Connectivity Policy Details"
+  vars:
+    api_info: &api_info_lan_connectivity
+      api_private_key: "{{ api_private_key }}"
+      api_key_id: "{{ api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  intersight_rest_api:
+    <<: *api_info_lan_connectivity
+    resource_path: /vnic/LanConnectivityPolicies
+    query_params:
+      $filter: "Name eq '{{ name_of_lan_connectivity_policy }}'"
+  register:  lan_connectivity_policy_details

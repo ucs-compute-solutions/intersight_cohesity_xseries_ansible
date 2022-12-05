@@ -1,0 +1,6 @@
+---
+
+# This file defines various default values used by server policies
+# These values typically do not need to changes but can be modified depending on customer deployments
+
+description_of_SPT: "Server Profile Template for Cohesity with X-Seris (X210C node)"

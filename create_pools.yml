@@ -1,0 +1,13 @@
+---
+# Create various pools. The pools being created are:
+# - IP Pools for Mgmt
+# - UUID pools
+# - MAC address Pools
+#
+- name: "Create Various Pools"
+  hosts: localhost
+  gather_facts: no
+
+  # Create Various Pool
+  roles:
+    - role: create_pools

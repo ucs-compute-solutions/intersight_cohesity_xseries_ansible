@@ -1,0 +1,15 @@
+#                            ---  File with inventory of all components of FlashStack  --
+
+# Currently, this file does not need any UCS server entries to be populated.
+# You can execute update_all_inventory.yml playbook to update your server information in this file.
+# In the current release, the playbooks are used to create server profile template from which server profiles are derived manually by the end user.
+[Intersight_HX]
+sample-entry-do-not-delete
+
+[Intersight_Servers]
+sample-entry-do-not-delete
+
+
+[Intersight:children]
+Intersight_HX
+Intersight_Servers
