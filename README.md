@@ -12,9 +12,10 @@ The CVD lays out the complete process for configuring the Cohesity Infrastructur
 
 ## Cohesity on X-Series - Physical Topologies
 
-IP connectivity             |  FC connectivity
-:-------------------------:|:-------------------------:
-![](https://user-images.githubusercontent.com/25094641/190374265-daef542b-cdc6-40f6-9c7a-6cf76f99bbe2.jpg)  |  ![](https://user-images.githubusercontent.com/25094641/190374304-b505b0e6-1011-4312-aca8-3d729d7fa1c4.jpg)
+
+
+
+![XSeries architecture](https://user-images.githubusercontent.com/101294457/205809370-3237c9b3-c5e4-493a-a923-77484319fdec.png)
 
 <br />
 
