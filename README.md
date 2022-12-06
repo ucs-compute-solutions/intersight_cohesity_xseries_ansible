@@ -21,17 +21,14 @@ The CVD lays out the complete process for configuring the Cohesity Infrastructur
 
 ## How to execute these playbooks?
 
-### High-Level Cohesity on X-Series Automation
-<img width="1200" alt="Screen Shot 2022-09-15 at 5 03 58 PM" src="https://user-images.githubusercontent.com/25094641/190393678-6cafd996-fae2-4553-8f23-12cbe1c11293.png">
-
-<br />
-<br />
+### High-Level Cohesity on X-Series - Automation for X210c compute and storage nodes
+![Autmation screenshot](https://user-images.githubusercontent.com/101294457/205838615-450fca8e-ebdf-4aa5-abb1-82887456aa52.png)
 
 
-###  Cohesity on X-Series Automated Deployment Workflow
-<img width="700" src="https://user-images.githubusercontent.com/3585414/144469881-a647e3fa-f48e-411c-b13c-822bfb9a15ea.png">
 <br />
 <br />
+
+
 
 
 ### Set up the execution environment
@@ -57,7 +54,7 @@ The Intersight playbooks in this repository perform following functions:
 
 After successfully executing the playbooks, one or many server profiles can easily derived and attached to the All NVMe node from Intersight dashboard.
 
-**NOTE:** The addition of UCS to Intersight Account or configuration of Domain Profile to setup UCS is not part of this repository and will have to be performed manually before executing the playbooks.
+**NOTE:** The addition of UCS to Intersight Account or configuration of Domain Profile and Chassis Profile is not part of this repository and will have to be performed manually before executing the playbooks.
 
 **NOTE:** The playbooks do not create an organization and assume an organization (default or otherwise) has already been setup under Intersight account. The organization name must be updated in group_vars/all.yml(org_name) for successful execuation of the playbooks.
 
