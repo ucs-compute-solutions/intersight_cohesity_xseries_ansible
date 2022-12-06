@@ -1,6 +1,6 @@
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/ucs-compute-solutions/cohesity_xseries_ansible)
 
-# Cohesity Infrastructure Deployment with Cisco X-Series Intel based All Flash nodes supporting both Cisco VIC 4th Gen and 5th Gen VIC
+# Cohesity Infrastructure Deployment with Cisco X-Series Intel based All Flash X210c nodes supporting  Cisco VIC 4th Gen VIC
 
 This repository  contains Ansible playbooks to configure the Cohesity on Cisco X-Series Infrastructure which includes : <br />
 &emsp;&emsp; •	 Cisco UCS in Intersight Managed Mode (IMM) <br />
