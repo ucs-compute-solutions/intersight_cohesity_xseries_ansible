@@ -22,5 +22,5 @@
 # Collect information about various policies to be programmed into the Templates
 - include_tasks: gather_policy_info.yml
 
-# Create Server Profile Template for FC
+# Create Server Profile Template
 - include_tasks: create_server_profile_template.yml

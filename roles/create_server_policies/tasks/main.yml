@@ -57,6 +57,7 @@
 
 # Create Local User Policy to allow KVM Access
 - include_tasks: create_local_user_policy.yml
+  when:  (local_user_policy.api_response.Moid is not defined)
 
 # Create KVM Policy
 - include_tasks: create_kvm_policy.yml

@@ -1,5 +1,5 @@
 ---
-# Create Server Profile Template for Cohesity with X-Series 
+# Create Server Profile Template for Cohesity with X-Series
 - name: "Configure Server Profile Template for Cohesity X-Series - X210C"
   vars:
         api_info: &api_info_assign

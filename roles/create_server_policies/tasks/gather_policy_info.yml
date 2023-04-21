@@ -39,3 +39,20 @@
     query_params:
       $filter: "Name eq '{{ name_of_lan_connectivity_policy }}'"
   register:  lan_connectivity_policy_details
+
+  # Get Local User Policy for Service Profile Template
+- name: "Get Local User Policy"
+  vars:
+    api_info: &api_info_user_policy
+      api_private_key: "{{ api_private_key }}"
+      api_key_id: "{{ api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  intersight_rest_api:
+    <<: *api_info_user_policy
+    resource_path: /iam/EndPointUserPolicies
+    query_params:
+      $filter: "Name eq '{{ name_of_LocalUser_policy }}'"
+  register:  local_user_policy
