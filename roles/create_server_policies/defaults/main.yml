@@ -26,7 +26,7 @@ description_of_LocalUser_policy      : "Allow Local Users in this policy KVM Acc
 
 # Serial Over Lan Policy
 description_of_sol_policy      : "Serial Over LAN Policy Description"
-BaudRate                       : 9600
+BaudRate                       : 11520
 ComPort                        : "com0"
 
 # Power Policy details
